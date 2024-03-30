@@ -1,10 +1,12 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from "react";
+import { View } from "react-native";
+
+import HeaderTabs from "./HeaderTabs";
 
 export default function Header() {
   return (
     <View>
-      <Text>Header</Text>
+      <HeaderTabs />
     </View>
-  )
+  );
 }
