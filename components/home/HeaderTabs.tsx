@@ -20,14 +20,14 @@ export default function HeaderTabs() {
   return (
     <View style={{ flexDirection: "row", alignSelf: "center" }}>
       <Tab
-        text="Delivery"
+        text="Entrega"
         name={activeEnum.delivery}
         btnColor={active === activeEnum.delivery ? "black" : "white"}
         textColor={active === activeEnum.delivery ? "white" : "black"}
         setActive={setActive}
       />
       <Tab
-        text="Pickup"
+        text="Retirada"
         name={activeEnum.pickup}
         btnColor={active === activeEnum.pickup ? "black" : "white"}
         textColor={active === activeEnum.pickup ? "white" : "black"}
