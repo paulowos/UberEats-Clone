@@ -18,7 +18,7 @@ export default function HeaderTabs() {
   const [active, setActive] = useState<activeEnum>(activeEnum.delivery);
 
   return (
-    <View style={{ flexDirection: "row", alignSelf: "center", marginTop: 5 }}>
+    <View style={{ flexDirection: "row", alignSelf: "center" }}>
       <Tab
         text="Delivery"
         name={activeEnum.delivery}

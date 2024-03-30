@@ -1,12 +1,12 @@
 import React from "react";
-import { View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import HeaderTabs from "./HeaderTabs";
 
 export default function Header() {
   return (
-    <View>
+    <SafeAreaView style={{ backgroundColor: "white", padding: 15 }}>
       <HeaderTabs />
-    </View>
+    </SafeAreaView>
   );
 }

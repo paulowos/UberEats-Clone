@@ -1,12 +1,12 @@
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View } from "react-native";
 
 import Header from "../components/home/Header";
 
 export default function Home() {
   return (
-    <SafeAreaView>
+    <View style={{ backgroundColor: "#eee", flex: 1 }}>
       <Header />
-    </SafeAreaView>
+    </View>
   );
 }
