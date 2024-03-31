@@ -33,19 +33,12 @@ export default function SearchBar() {
             borderRadius: 30,
             flexDirection: "row",
             alignItems: "center",
-            marginRight: 10,
+            marginHorizontal: 15,
+            paddingHorizontal: 10,
           },
         }}
-        renderLeftButton={() => (
-          <Ionicons
-            name="location-sharp"
-            size={24}
-            style={{ marginLeft: 10 }}
-          />
-        )}
-        renderRightButton={() => (
-          <Ionicons name="search-sharp" size={24} style={{ marginRight: 10 }} />
-        )}
+        renderLeftButton={() => <Ionicons name="location-sharp" size={24} />}
+        renderRightButton={() => <Ionicons name="search-sharp" size={24} />}
       />
     </View>
   );
