@@ -10,7 +10,7 @@ import {
 
 import categoriesAssets, {
   categoryAsset,
-} from "../../assets/images/categories";
+} from "../../../assets/images/categories";
 
 export default function Categories() {
   return (

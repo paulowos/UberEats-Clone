@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 
-import Header from "../components/home/Header";
+import Header from "../components/home/header/Header";
 
 export default function Home() {
   return (
