@@ -7,12 +7,10 @@ import SearchBar from "./SearchBar";
 
 export default function Header() {
   return (
-    <>
-      <SafeAreaView style={{ backgroundColor: "white", paddingVertical: 15 }}>
-        <HeaderTabs />
-        <SearchBar />
-        <Categories />
-      </SafeAreaView>
-    </>
+    <SafeAreaView style={{ backgroundColor: "white", paddingVertical: 15 }}>
+      <HeaderTabs />
+      <SearchBar />
+      <Categories />
+    </SafeAreaView>
   );
 }
