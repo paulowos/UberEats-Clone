@@ -9,10 +9,24 @@ import {
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-export default function RestaurantCard() {
+type props = {
+  name: string;
+  image_url: string;
+  rating: number;
+};
+
+const defaultImageUrl =
+  "https://img.odcdn.com.br/wp-content/uploads/2019/09/20190919034956.jpg";
+
+export default function RestaurantCard({ name, image_url, rating }: props) {
   const source: ImageURISource = {
-    uri: "https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcHgxMDY2NjE4LWltYWdlLWt3dnkzdnltLmpwZw.jpg",
+    uri: image_url ? image_url : defaultImageUrl,
   };
+
+  const nameFormatter = (name: string): string => {
+    return name.split(" - ")[0];
+  };
+
   return (
     <TouchableOpacity activeOpacity={1} style={styles.cardContainer}>
       <Image source={source} style={styles.cardImage} />
@@ -21,11 +35,11 @@ export default function RestaurantCard() {
       </TouchableOpacity>
       <View style={styles.cardView}>
         <View>
-          <Text style={styles.cardTitle}>Restaurante de Teste</Text>
+          <Text style={styles.cardTitle}>{nameFormatter(name)}</Text>
           <Text style={styles.cardInfo}>30-45 • min</Text>
         </View>
         <View style={styles.cardRating}>
-          <Text>4.5</Text>
+          <Text>{rating}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -34,7 +48,7 @@ export default function RestaurantCard() {
 
 const styles = StyleSheet.create({
   cardContainer: { backgroundColor: "white", padding: 10 },
-  cardImage: { width: "100%", height: 180 },
+  cardImage: { width: "100%", height: 180, borderRadius: 2 },
   cardHeart: { position: "absolute", right: 20, top: 20 },
   cardView: {
     flexDirection: "row",
