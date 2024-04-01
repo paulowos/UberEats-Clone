@@ -9,7 +9,7 @@ export default function Body() {
   const store = useStore();
   const [data, setData] = useState<yelpApiType>();
 
-  const URL = `https://api.yelp.com/v3/businesses/search?location=${store.location}&categories=hotdogs%2Cdesserts%2Cbeverage_stores%2Cbakeries%2Ccafes%2Cgrocery&locale=pt_BR&sort_by=review_count&limit=20`;
+  const URL = `https://api.yelp.com/v3/businesses/search?location=${store.location}&categories=${store.alias}&locale=pt_BR&sort_by=review_count&limit=20`;
 
   const apiOptions = {
     headers: {
@@ -26,7 +26,7 @@ export default function Body() {
 
   useEffect(() => {
     getData();
-  }, [store.location]);
+  }, [store.location, store.alias]);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
