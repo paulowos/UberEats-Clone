@@ -11,7 +11,6 @@ import {
 import categoriesAssets, {
   categoryAsset,
 } from "../../../assets/images/categories";
-
 import useStore, { DEFAULT_ALIAS } from "../../../store/store";
 
 export default function Categories() {
@@ -35,7 +34,7 @@ const Category = ({ name, image, alias }: categoryAsset) => {
   const store = useStore();
 
   const handlePress = () => {
-    if (store.alias == alias) return store.setAlias(DEFAULT_ALIAS);
+    if (store.alias === alias) return store.setAlias(DEFAULT_ALIAS);
     store.setAlias(alias);
   };
 
