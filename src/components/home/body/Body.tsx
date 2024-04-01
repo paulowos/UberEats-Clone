@@ -4,11 +4,12 @@ import { ScrollView, View } from "react-native";
 import RestaurantCard from "./RestaurantCard";
 import yelpApiType from "../../../types/yelpApiType";
 
-export default function Body() {
+type Prop = { location: string };
+
+export default function Body({ location }: Prop) {
   const [data, setData] = useState<yelpApiType>();
 
-  const URL =
-    "https://api.yelp.com/v3/businesses/search?location=RiodeJaneiro&categories=hotdogs%2Cdesserts%2Cbeverage_stores%2Cbakeries%2Ccafes%2Cgrocery&locale=pt_BR&sort_by=review_count&limit=20";
+  const URL = `https://api.yelp.com/v3/businesses/search?location=${location}&categories=hotdogs%2Cdesserts%2Cbeverage_stores%2Cbakeries%2Ccafes%2Cgrocery&locale=pt_BR&sort_by=review_count&limit=20`;
 
   const apiOptions = {
     headers: {
@@ -19,17 +20,18 @@ export default function Body() {
   const getData = () => {
     fetch(URL, apiOptions)
       .then((res) => res.json())
-      .then((data: yelpApiType) => setData(data));
+      .then((data: yelpApiType) => setData(data))
+      .catch(() => setData(undefined));
   };
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [location]);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={{ gap: 5, marginVertical: 5 }}>
-        {data?.businesses.map(({ id, name, image_url, rating }) => (
+        {data?.businesses?.map(({ id, name, image_url, rating }) => (
           <RestaurantCard
             key={id}
             name={name}
