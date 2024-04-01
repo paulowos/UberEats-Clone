@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
 
 import RestaurantCard from "./RestaurantCard";
+import useStore from "../../../store/store";
 import yelpApiType from "../../../types/yelpApiType";
 
-type Prop = { location: string };
-
-export default function Body({ location }: Prop) {
+export default function Body() {
+  const store = useStore();
   const [data, setData] = useState<yelpApiType>();
 
-  const URL = `https://api.yelp.com/v3/businesses/search?location=${location}&categories=hotdogs%2Cdesserts%2Cbeverage_stores%2Cbakeries%2Ccafes%2Cgrocery&locale=pt_BR&sort_by=review_count&limit=20`;
+  const URL = `https://api.yelp.com/v3/businesses/search?location=${store.location}&categories=hotdogs%2Cdesserts%2Cbeverage_stores%2Cbakeries%2Ccafes%2Cgrocery&locale=pt_BR&sort_by=review_count&limit=20`;
 
   const apiOptions = {
     headers: {
@@ -26,7 +26,7 @@ export default function Body({ location }: Prop) {
 
   useEffect(() => {
     getData();
-  }, [location]);
+  }, [store.location]);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
