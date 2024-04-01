@@ -1,15 +1,24 @@
 import React from "react";
 import { View } from "react-native";
 import {
+  GooglePlaceData,
   GooglePlacesAutocomplete,
   Query,
 } from "react-native-google-places-autocomplete";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-export default function SearchBar() {
+type Prop = { setLocation: React.Dispatch<React.SetStateAction<string>> };
+
+export default function SearchBar({ setLocation }: Prop) {
   const query: Query = {
     key: process.env.EXPO_PUBLIC_PLACES_API_KEY || "",
     language: "pt-BR",
+  };
+
+  const handlePress = (data: GooglePlaceData) => {
+    const city = data.description.split(",");
+    const location = city[0].replace(/ /g, "%20");
+    setLocation(location);
   };
 
   return (
@@ -22,6 +31,7 @@ export default function SearchBar() {
       <GooglePlacesAutocomplete
         placeholder="Pesquisar"
         query={query}
+        onPress={handlePress}
         styles={{
           textInput: {
             backgroundColor: "#eee",
