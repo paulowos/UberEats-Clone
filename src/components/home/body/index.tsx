@@ -1,11 +1,15 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
 
 import RestaurantCard from "./RestaurantCard";
 import useStore from "../../../store/store";
+import StackParamType from "../../../types/stackParamsType";
 import yelpApiType from "../../../types/yelpApiType";
 
-export default function Body() {
+type Props = { navigation: NativeStackNavigationProp<StackParamType, "Home"> };
+
+export default function Body({ navigation }: Props) {
   const store = useStore();
   const [data, setData] = useState<yelpApiType>();
 
@@ -31,13 +35,8 @@ export default function Body() {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={{ gap: 5, marginVertical: 5 }}>
-        {data?.businesses?.map(({ id, name, image_url, rating }) => (
-          <RestaurantCard
-            key={id}
-            name={name}
-            image_url={image_url}
-            rating={rating}
-          />
+        {data?.businesses?.map((data) => (
+          <RestaurantCard data={data} key={data.id} navigation={navigation} />
         ))}
       </View>
     </ScrollView>
