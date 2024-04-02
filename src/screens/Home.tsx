@@ -13,7 +13,7 @@ export default function Home({ navigation }: Props) {
   return (
     <View style={{ backgroundColor: "#eee", flex: 1 }}>
       <Header />
-      <Body />
+      <Body navigation={navigation} />
       <Footer />
     </View>
   );
