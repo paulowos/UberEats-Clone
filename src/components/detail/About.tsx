@@ -1,8 +1,5 @@
-import { View, Text, Image, ImageURISource, StyleSheet } from "react-native";
 import React from "react";
-
-const image =
-  "https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2rltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcHgxMDY2NjE4LWltYWdlLWt3dnkzdnltLmpwZw.jpg";
+import { View, Text, Image, ImageURISource, StyleSheet } from "react-native";
 
 const defaultImageUrl =
   "https://img.odcdn.com.br/wp-content/uploads/2019/09/20190919034956.jpg";
