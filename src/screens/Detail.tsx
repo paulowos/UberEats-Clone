@@ -1,14 +1,16 @@
-import React, { Component } from "react";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import React from "react";
 import { View } from "react-native";
 
 import About from "../components/detail/About";
+import StackParamType from "../types/stackParamsType";
 
-export default class Detail extends Component {
-  render() {
-    return (
-      <View>
-        <About />
-      </View>
-    );
-  }
+type Props = NativeStackScreenProps<StackParamType, "Detail">;
+
+export default function Detail({ route }: Props) {
+  return (
+    <View>
+      <About route={route} />
+    </View>
+  );
 }
