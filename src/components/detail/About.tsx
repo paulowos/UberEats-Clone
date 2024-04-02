@@ -1,19 +1,27 @@
+import { RouteProp } from "@react-navigation/native";
 import React from "react";
 import { View, Text, Image, ImageURISource, StyleSheet } from "react-native";
 
-const defaultImageUrl =
-  "https://img.odcdn.com.br/wp-content/uploads/2019/09/20190919034956.jpg";
-const title = "Restaurante Teste";
+import StackParamType from "../../types/stackParamsType";
 
-const description = "Descrição Teste";
+type Props = { route: RouteProp<StackParamType, "Detail"> };
 
-export default function About() {
-  const source: ImageURISource = { uri: defaultImageUrl };
+export default function About({ route }: Props) {
+  const { image_url, name, categories, rating, review_count } = route.params;
+
+  const formattedCategories = categories
+    .map((category) => category.title)
+    .join(" • ");
+
+  const description = `${rating} ⭐ (${review_count}+)`;
+
+  const source: ImageURISource = { uri: image_url };
 
   return (
     <View>
       <Image source={source} style={styles.image} />
-      <Text style={styles.text}>{title}</Text>
+      <Text style={styles.text}>{name}</Text>
+      <Text style={styles.description}>{formattedCategories}</Text>
       <Text style={styles.description}>{description}</Text>
     </View>
   );
@@ -30,6 +38,6 @@ const styles = StyleSheet.create({
   description: {
     paddingHorizontal: 15,
     fontWeight: "400",
-    fontSize: 15.5,
+    fontSize: 15,
   },
 });
