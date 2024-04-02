@@ -1,3 +1,4 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React from "react";
 import {
   View,
@@ -9,16 +10,20 @@ import {
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-type props = {
-  name: string;
-  image_url: string;
-  rating: number;
+import StackParamType from "../../../types/stackParamsType";
+import { Business } from "../../../types/yelpApiType";
+
+type Props = {
+  data: Business;
+  navigation: NativeStackNavigationProp<StackParamType, "Home">;
 };
 
 const defaultImageUrl =
   "https://img.odcdn.com.br/wp-content/uploads/2019/09/20190919034956.jpg";
 
-export default function RestaurantCard({ name, image_url, rating }: props) {
+export default function RestaurantCard({ data, navigation }: Props) {
+  const { name, image_url, rating } = data;
+
   const source: ImageURISource = {
     uri: image_url ? image_url : defaultImageUrl,
   };
@@ -27,8 +32,16 @@ export default function RestaurantCard({ name, image_url, rating }: props) {
     return name.split(" - ")[0];
   };
 
+  const handlePress = () => {
+    navigation.navigate("Detail", data);
+  };
+
   return (
-    <TouchableOpacity activeOpacity={1} style={styles.cardContainer}>
+    <TouchableOpacity
+      activeOpacity={1}
+      style={styles.cardContainer}
+      onPress={handlePress}
+    >
       <Image source={source} style={styles.cardImage} />
       <TouchableOpacity style={styles.cardHeart}>
         <Ionicons name="heart-outline" size={24} color="white" />
