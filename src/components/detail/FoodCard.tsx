@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, ImageURISource, StyleSheet } from "react-native";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Divider, Image } from "react-native-elements";
 
 import FoodType from "../../types/foodType";
@@ -16,6 +17,11 @@ export default function FoodCard({ food, showDivider }: Props) {
   return (
     <>
       <View style={styles.container}>
+        <BouncyCheckbox
+          innerIconStyle={{ borderColor: "lightgray", borderRadius: 0 }}
+          iconStyle={{ borderRadius: 0 }}
+          fillColor="green"
+        />
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{name}</Text>
           <Text>{description}</Text>
@@ -33,7 +39,7 @@ export default function FoodCard({ food, showDivider }: Props) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     paddingHorizontal: 15,
     paddingVertical: 10,
   },
