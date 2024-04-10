@@ -18,7 +18,7 @@ export default function Detail({ route }: Props) {
   return (
     <View style={{ height: "100%" }}>
       <About route={route} />
-      <Divider width={1.8} style={{ marginTop: 10 }} />
+      <Divider width={1.5} style={{ marginTop: 10 }} />
       <Menu foods={foods} />
     </View>
   );
