@@ -3,6 +3,7 @@ import { View, Text, ImageURISource, StyleSheet } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Divider, Image } from "react-native-elements";
 
+import useStore from "../../store/store";
 import FoodType from "../../types/foodType";
 
 type Props = {
@@ -13,6 +14,9 @@ type Props = {
 export default function FoodCard({ food, showDivider }: Props) {
   const { name, description, price, image } = food;
   const source: ImageURISource = { uri: image };
+  const store = useStore();
+
+  const handlePress = () => store.setCart(food);
 
   return (
     <>
@@ -21,6 +25,8 @@ export default function FoodCard({ food, showDivider }: Props) {
           innerIconStyle={{ borderColor: "lightgray", borderRadius: 0 }}
           iconStyle={{ borderRadius: 0 }}
           fillColor="green"
+          onPress={handlePress}
+          isChecked={store.cart.some((f) => f.id === food.id)}
         />
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{name}</Text>
