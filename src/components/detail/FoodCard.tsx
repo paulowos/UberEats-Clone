@@ -1,0 +1,55 @@
+import React from "react";
+import { View, Text, ImageURISource, StyleSheet } from "react-native";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { Divider, Image } from "react-native-elements";
+
+import useStore from "../../store/store";
+import FoodType from "../../types/foodType";
+
+type Props = {
+  food: FoodType;
+  showDivider: boolean;
+};
+
+export default function FoodCard({ food, showDivider }: Props) {
+  const { name, description, price, image } = food;
+  const source: ImageURISource = { uri: image };
+  const store = useStore();
+
+  const handlePress = () => store.setCart(food);
+
+  return (
+    <>
+      <View style={styles.container}>
+        <BouncyCheckbox
+          innerIconStyle={{ borderColor: "lightgray", borderRadius: 0 }}
+          iconStyle={{ borderRadius: 0 }}
+          fillColor="green"
+          onPress={handlePress}
+          isChecked={store.cart.some((f) => f.id === food.id)}
+        />
+        <View style={styles.infoContainer}>
+          <Text style={styles.name}>{name}</Text>
+          <Text>{description}</Text>
+          <Text>{price}</Text>
+        </View>
+        <Image source={source} style={styles.image} />
+      </View>
+      {showDivider && (
+        <Divider width={0.9} style={{ width: "90%", alignSelf: "center" }} />
+      )}
+    </>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+  },
+  infoContainer: { width: 220, justifyContent: "space-evenly" },
+  name: { fontSize: 19, fontWeight: "600" },
+  image: { width: 100, height: 100, borderRadius: 8 },
+});

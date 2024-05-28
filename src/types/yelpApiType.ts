@@ -1,12 +1,11 @@
 type yelpApiType = {
-  businesses: business[];
+  businesses: Business[];
 };
 
-type business = {
+export type Business = {
   id: string;
   name: string;
   image_url: string;
-  price: string;
   rating: number;
   review_count: number;
   categories: { title: string }[];

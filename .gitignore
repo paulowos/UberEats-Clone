@@ -36,3 +36,7 @@ yarn-error.*
 *.tsbuildinfo
 
 eas.json
+
+.yarn/
+
+.yarnrc.yml
